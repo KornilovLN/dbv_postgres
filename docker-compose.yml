@@ -12,6 +12,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - postgres_network
+    ports:
+      - "5432:5432"  # Измените на стандартный порт PostgreSQL
 
   app_writer:
     build: ./app_writer
@@ -22,6 +24,8 @@ services:
       - postgres
     networks:
       - postgres_network
+    ports:
+      - "5000:5000"  # Порт для Flask приложения
 
   app_reader:
     build: ./app_reader
@@ -32,9 +36,11 @@ services:
       - postgres
     networks:
       - postgres_network
+    ports:
+      - "5001:5000"  # Порт для второго Flask приложения
 
 networks:
-  app_postgres_network:
+  postgres_network:
     driver: bridge
 
 volumes:

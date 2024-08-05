@@ -1,0 +1,12 @@
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://localhost:5000/write", true);
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 201) {
+    console.log(xhr.responseText);
+  }
+};
+
+var data = JSON.stringify({ "name": "Starmark LN_xml" });
+xhr.send(data);
